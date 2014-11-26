@@ -18,6 +18,10 @@
 # limitations under the License.
 #
 
+if node[:platform] == 'ubuntu' && node[:platform_version] == '14.04'
+  Chef::Platform.set :platform => :ubuntu, :resource => :service, :provider => Chef::Provider::Service::Upstart
+end
+
 platform_options = node['openstack']['common']['platform']
 case node['platform_family']
 when 'debian'
